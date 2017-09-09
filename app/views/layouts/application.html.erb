@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Fikelelo</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--     Fonts and icons     -->
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+<style>
+body {
+      font-family: 'Roboto', serif;
+     }
+</style>
+
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/sidebar-5.jpg">
+
+        <!--
+
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
+
+        -->
+
+        	<div class="sidebar-wrapper">
+                <div class="logo">
+                    <a  class="simple-text" style="text-decoration: none;">
+                      Fikelelo
+                    </a>
+                </div>
+
+                <ul class="nav">
+                    <li>
+                      <a href="/dashbaord">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                      </a>
+                    </li>
+                    <li>
+                        <a href="/profile">
+                            <i class="pe-7s-user"></i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/devices">
+                            <i class="pe-7s-phone"></i>
+                            <p>Devices</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/transactions">
+                            <i class="pe-7s-repeat"></i>
+                            <p>Transactions</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="pe-7s-close-circle"></i>
+                            <p>Log Out</p>
+                        </a>
+                    </li>
+
+    				<li class="active-pro">
+                        <a href="http://www.google.com">
+                            <i class="pe-7s-rocket"></i>
+                            <p>Explore the Internet</p>
+                        </a>
+                    </li>
+                </ul>
+        	</div>
+        </div>
+
+
+        <div class="main-panel">
+
+          <%= yield %>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                  <i class="pe-7s-help1"></i> Help
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right">
+                         By using this service, you agree to the <a href=""> Terms & Conditions </a> &copy; <script>document.write(new Date().getFullYear())</script> All Rights Reserved.
+                    </p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+  </body>
+</html>
