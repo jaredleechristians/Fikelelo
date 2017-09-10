@@ -12,5 +12,4 @@
 //= light-bootstrap-dashboard
 //= require jquery-1.10.2
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .
