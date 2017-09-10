@@ -9,7 +9,6 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= light-bootstrap-dashboard
 //= require jquery-1.10.2
 //= require rails-ujs
 //= require_tree .
