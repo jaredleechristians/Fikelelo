@@ -1,3 +1,27 @@
+
+<style>
+
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .radial-container {
+    margin: 0 auto;
+  }
+
+  .main  svg {
+    width: 65vw;
+    max-width: 360px;
+  }
+
+  .rbc-label-start {
+    font-family: fontawesome;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+</style>
 <nav class="navbar navbar-default navbar-fixed">
   <div class="container-fluid">
                   <div class="navbar-header">
@@ -56,12 +80,33 @@
             </div>
             <div class="col-md-8">
                 <div class="card" >
-                    <div class="content" style="height:440px;overflow-y:scroll">
+                    <div class="content" style="height:400px;overflow-y:scroll">
+                      <div class="radial-container">
+                        <div class="main"></div>
+                      </div>
 
+                      <script>
 
+                        var mainChart = new RadialProgressChart('.main', {
+                              diameter: 130,
+                              series: [
+                                {labelStart: '\uF106', value: 30},
+                                {labelStart: '\uF101', value: 50},
+                                {labelStart: '\uF105', value: 70}
+                              ]}
+                        );
+
+                      </script>
 
                     </div>
                     <div class="footer" style="padding: 15px 15px 10px 15px">
+                      <div class="legend">
+                          <i class="fa fa-circle text-info"></i> ZAR
+                          <i class="fa fa-circle text-success"></i> DATA
+                          <i class="fa fa-circle text-danger"></i> VOICE
+
+
+                      </div>
                         <hr>
                         <div class="stats">Remove this Device</div>
                     </div>

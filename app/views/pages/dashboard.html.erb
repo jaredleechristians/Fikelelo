@@ -1,3 +1,42 @@
+<style>
+  .radial-container div {
+    display: inline-block;
+    padding: 20px;
+    width: 250px;
+  }
+
+  .rbc-label-start {
+    font-family: fontawesome;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  .rbc-center-text {
+    font-family: 'Roboto', 'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial;
+    fill: black;
+  }
+
+  .megabites .rbc-center-text-line0 {
+    font-size: 55px;
+  }
+
+  .megabites .rbc-center-text-line1 {
+    font-size: 20px;
+  }
+
+  .minutes .rbc-center-text-line0 {
+    font-size: 55px;
+  }
+
+  .minutes .rbc-center-text-line1 {
+    font-size: 20px;
+  }
+
+  .gpa .rbc-center-text-line0 {
+    font-size: 30px;
+  }
+
+</style>
 <nav class="navbar navbar-default navbar-fixed">
   <div class="container-fluid">
                   <div class="navbar-header">
@@ -23,6 +62,33 @@
 </nav>
 <div class="content">
     <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <div class="header">
+                  <h3 class="title">R 3 450.00 <span style="float: right">ZAR</span></h3>
+                  <hr>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+                <form>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                            <label style="text-transform:uppercase;font-weight: 400;">Prepaid Card</label>
+                              <input type="text" class="form-control" placeholder="" value="">
+                          </div>
+                      </div>
+                  </div>
+                  </form>
+          </div>
+          <div class="col-md-4">
+              <button type="submit" class="btn btn-info btn-fill pull-right" style="height:65px;width: 100%; margin-bottom:40px">Link</button>
+              <div class="clearfix"></div>
+          </div>
+      </div>
+
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
@@ -30,24 +96,32 @@
                         <h3 class="title">Voice</h3>
                         <hr>
                     </div>
-                    <div class="content" style="height:340px;">
+                    <div class="content" style="height:250px;">
                       <div style="height:185px">
-                        <div class="container" style="width:100%">
-
+                        <div style="height:185px;text-align:center" >
+                          <div class="radial-container">
+                            <div class="minutes"></div>
+                            <script>
+                            var megabites = new RadialProgressChart('.minutes', {
+                            diameter: 200,
+                            max: 800,
+                            round: true,
+                            series: [{
+                              labelStart: '\uF105',
+                              value: 355,
+                              color: ['#ff1410', '#fe08b5']
+                            }],
+                            center: {
+                              content: [function(value) {
+                                return value
+                              }, ' OF 800 MIN'],
+                              y: 25
+                            }
+                            });
+                            </script>
+                          </div>
                         </div>
                       </div>
-                      <form>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Prepaid Card</label>
-                                    <input type="text" class="form-control" placeholder="" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Link</button>
-                        <div class="clearfix"></div>
-                        </form>
 
                     </div>
                     <div class="footer" style="padding: 15px 15px 10px 15px">
@@ -64,21 +138,30 @@
 
 
                     </div>
-                    <div class="content" style="height:340px;">
-                      <div style="height:185px">
-                      </div>
-                      <form>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Prepaid Card</label>
-                                    <input type="text" class="form-control" placeholder="" value="">
-                                </div>
-                            </div>
+                    <div class="content" style="height:250px;">
+                      <div style="height:185px;text-align:center" >
+                        <div class="radial-container">
+                          <div class="megabites"></div>
+                          <script>
+                          var minutes = new RadialProgressChart('.megabites', {
+                          diameter: 200,
+                          max: 800,
+                          round: true,
+                          series: [{
+                            labelStart: '\uF105',
+                            value: 200,
+                            color: ['yellow', '#7CFC00']
+                          }],
+                          center: {
+                            content: [function(value) {
+                              return value
+                            }, ' OF 1024 MB'],
+                            y: 25
+                          }
+                          });
+                          </script>
                         </div>
-                        <button type="submit" class="btn btn-info btn-fill pull-right">Link</button>
-                        <div class="clearfix"></div>
-                        </form>
+                      </div>
 
                     </div>
                     <div class="footer" style="padding: 15px 15px 10px 15px">
@@ -94,7 +177,7 @@
                         <hr>
 
                     </div>
-                    <div class="content" style="height:340px;overflow-y:scroll">
+                    <div class="content" style="height:250px;overflow-y:scroll">
                       <div class="table-full-width">
                                     <table class="table">
                                         <tbody>
@@ -123,10 +206,6 @@
 
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-
         </div>
 
     </div>
