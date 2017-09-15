@@ -32,13 +32,13 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label>First Name</label>
-                                          <input type="text" class="form-control" placeholder="First Name" value="">
+                                          <input type="text" class="form-control" placeholder="First Name" value="<%= current_user.fname %>">
                                       </div>
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label>Last Name</label>
-                                          <input type="text" class="form-control" placeholder="Last Name" value="">
+                                          <input type="text" class="form-control" placeholder="Last Name" value="<%= current_user.lname %>">
                                       </div>
                                   </div>
                               </div>
@@ -46,13 +46,13 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label>Addresss</label>
-                                          <input type="text" class="form-control" placeholder="Address" value="">
+                                          <input type="text" class="form-control" placeholder="Address" value="<%= current_user.address %>">
                                       </div>
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label>Mobile Number</label>
-                                          <input type="text" class="form-control bfh-phone" placeholder="" value="">
+                                          <input type="text" class="form-control bfh-phone" placeholder="" value="<%= current_user.phone_number %>">
                                       </div>
                                   </div>
                               </div>
@@ -78,7 +78,7 @@
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <label>Username</label>
-                                              <input type="text" disabled class="form-control" placeholder="" value="">
+                                              <input type="text" disabled class="form-control" placeholder="" value="<%= current_user.email %>">
                                           </div>
                                       </div>
                                       <div class="col-md-6">
@@ -97,13 +97,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="text" disabled class="form-control" placeholder="" value="">
+                                                <input type="password" disabled class="form-control" placeholder="" value="<%= current_user.email %>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>New Password</label>
-                                                <input type="text" class="form-control" placeholder="Password" value="">
+                                                <input type="password" class="form-control" placeholder="Password" value="">
                                             </div>
                                         </div>
                                     </div>

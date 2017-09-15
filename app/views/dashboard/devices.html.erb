@@ -48,19 +48,19 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="card" >
                     <div class="content" style="height:440px;overflow-y:scroll">
                       <div class="table-full-width">
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <td><%= image_tag("/devices/online-iphone.png") %></td>
+                                                <td style="text-align: center"><%= image_tag("/devices/online-iphone.png") %></td>
                                                 <td><h5 style="margin-bottom: 0px;"> Jared's iPhone 7 Plus</h5>b8:8d:12:04:6c:08</td>
                                             </tr>
                                             <tr>
 
-                                                <td><%= image_tag("/devices/online-macbook.png") %></td>
+                                                <td style="text-align: center"><%= image_tag("/devices/online-macbook.png") %></td>
                                                 <td><h5 style="margin-bottom: 0px;"> Jared's MacBook air</h5>b8:8d:12:04:6c:08</td>
                                             </tr>
                                             <tr>
@@ -74,41 +74,6 @@
                     <div class="footer" style="padding: 15px 15px 10px 15px">
                         <hr>
                         <div class="stats">You are signed in on these devices</div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card" >
-                    <div class="content" style="height:400px;overflow-y:scroll">
-                      <div class="radial-container">
-                        <div class="main"></div>
-                      </div>
-
-                      <script>
-
-                        var mainChart = new RadialProgressChart('.main', {
-                              diameter: 130,
-                              series: [
-                                {labelStart: '\uF106', value: 30},
-                                {labelStart: '\uF101', value: 50},
-                                {labelStart: '\uF105', value: 70}
-                              ]}
-                        );
-
-                      </script>
-
-                    </div>
-                    <div class="footer" style="padding: 15px 15px 10px 15px">
-                      <div class="legend">
-                          <i class="fa fa-circle text-info"></i> ZAR
-                          <i class="fa fa-circle text-success"></i> DATA
-                          <i class="fa fa-circle text-danger"></i> VOICE
-
-
-                      </div>
-                        <hr>
-                        <div class="stats">Remove this Device</div>
                     </div>
 
                 </div>

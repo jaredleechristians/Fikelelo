@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fikelelo</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!--     Fonts and icons     -->
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.js"></script>
+
+<style>
+body {
+      font-family: 'Roboto', serif;
+     }
+</style>
+
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="/sidebar-5.jpg">
+
+        <!--
+            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+            Tip 2: you can also add an image using data-image tag
+        -->
+
+        	<div class="sidebar-wrapper">
+                <div class="logo">
+                    <a  class="simple-text" style="text-decoration: none;">
+                      Fikelelo
+                    </a>
+                </div>
+
+                <ul class="nav">
+                    <li>
+                      <a href="/dashboard">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                      </a>
+                    </li>
+                    <li>
+                      <%= link_to(edit_user_registration_path, :method => :get) do %>
+                            <i class="pe-7s-user"></i>
+                            <p>User Profile</p>
+                      <% end %>
+                    </li>
+                    <li>
+                        <a href="/transactions">
+                            <i class="pe-7s-repeat"></i>
+                            <p>Transactions</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/help">
+                            <i class="pe-7s-help1"></i>
+                            <p>Help</p>
+                        </a>
+                    </li>
+                    <li>
+                      <%= link_to(destroy_user_session_path, :method => :delete) do %>
+                          <i class="pe-7s-close-circle"></i>
+                          <p>Logout</p>
+                      <% end %>
+                    </li>
+
+    				<li class="active-pro">
+                        <a href="http://www.google.com">
+                            <i class="pe-7s-rocket"></i>
+                            <p>Explore the Internet</p>
+                        </a>
+                    </li>
+                </ul>
+        	</div>
+        </div>
+
+
+        <div class="main-panel">
+
+          <%= yield %>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="/help">
+                                  <i class="pe-7s-help1"></i> Help
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right">
+                         By using this service, you agree to the <a href="/terms"> Terms & Conditions </a> &copy; <script>document.write(new Date().getFullYear())</script> All Rights Reserved.
+                    </p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<!-- Modal Views -->
+<div class="modal fade" id="makeTransfer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Transfer</h3>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+            <form>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Username" value="">
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Amount" value="">
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Reference" value="">
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addCurrency" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Add Funds</h3>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Amount" value="">
+                      </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addVoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Add Voice</h3>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+      <div class="d-flex w-100 text-center">
+        <h3>25</h3>
+        <p class="text-muted"></p>
+      </div>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 text-center">
+      <h3>50</h3>
+      <p class="text-muted"></p>
+    </div>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 text-center">
+      <h3>100</h3>
+      <p class="text-muted"></p>
+    </div>
+  </a>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Add Data</h3>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+      <div class="d-flex w-100 text-center">
+        <h3>100</h3>
+        <p class="text-muted"></p>
+      </div>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 text-center">
+      <h3>250</h3>
+      <p class="text-muted"></p>
+    </div>
+  </a>
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 text-center">
+      <h3>500</h3>
+      <p class="text-muted"></p>
+    </div>
+  </a>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addDevice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Add Device</h3>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>
+<% unless notice.nil? %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+          $.notify({
+              icon: 'pe-7s-info',
+              message: "<%= notice %>"
+
+            },{
+                type: 'success',
+                timer: 4000,
+                placement: {
+		                 from: "top",
+		                 align: "center"
+	                    }
+            });
+
+      });
+  </script>
+<% end %>
+<% unless alert.nil? %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+          $.notify({
+              icon: 'pe-7s-info',
+              message: "<%= alert %> "
+
+            },{
+                type: 'danger',
+                timer: 4000,placement: {
+		                 from: "top",
+		                 align: "center"
+	                    }
+            });
+
+      });
+  </script>
+<% end %>
+
+<!-- Button trigger modal -->

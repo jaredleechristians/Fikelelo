@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
-  get 'pages/help'
+devise_for :users, :controllers => { registrations: 'registrations' }
 
-  get 'pages/terms'
+root 'dashboard#dashboard'
+  get 'dashboard/help'
+  get 'dashboard/terms'
+  get 'dashboard/profile'
+  get 'dashboard/devices'
+  get 'dashboard/transactions'
+  get 'dashboard/dashboard'
 
-  get 'pages/profile'
+match '/dashboard',    to: 'dashboard#dashboard',    via: 'get'
+match '/profile', to: 'dashboard#profile', via: 'get'
+match '/devices', to: 'dashboard#devices', via: 'get'
+match '/transactions',    to: 'dashboard#transactions',    via: 'get'
+match '/help',    to: 'dashboard#help',    via: 'get'
+match '/terms',    to: 'dashboard#terms',    via: 'get'
 
-  get 'pages/devices'
 
-  get 'pages/transactions'
-
-  get 'pages/dashboard'
-
-match '/dashboard',    to: 'pages#dashboard',    via: 'get'
-match '/profile', to: 'pages#profile', via: 'get'
-match '/devices', to: 'pages#devices', via: 'get'
-match '/transactions',    to: 'pages#transactions',    via: 'get'
-match '/help',    to: 'pages#help',    via: 'get'
-match '/terms',    to: 'pages#terms',    via: 'get'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
