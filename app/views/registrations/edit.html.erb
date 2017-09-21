@@ -66,6 +66,14 @@ body {
                             <p>Help</p>
                         </a>
                     </li>
+                    <% if current_user.admin? %>
+                    <li>
+                      <a href="/admin/vouchers">
+                          <i class="pe-7s-ticket"></i>
+                          <p>Vouchers</p>
+                      </a>
+                    </li>
+                    <% end %>
                     <li>
                       <%= link_to(destroy_user_session_path, :method => :delete) do %>
                           <i class="pe-7s-close-circle"></i>

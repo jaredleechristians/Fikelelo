@@ -1,0 +1,84 @@
+<nav class="navbar navbar-default navbar-fixed">
+  <div class="container-fluid">
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#">Vouchers</a>
+                  </div>
+                  <div class="collapse navbar-collapse">
+                      <ul class="nav navbar-nav navbar-left">
+
+                      </ul>
+
+                      <ul class="nav navbar-nav navbar-right">
+
+  						<li class="separator hidden-lg hidden-md"></li>
+                      </ul>
+                  </div>
+              </div>
+</nav>
+<div class="content">
+  <div class="container-fluid">
+    <%= form_for(Voucher.new) do |v| %>
+    <% @code =  1_000_0000 + Random.rand(10_000_0000 - 1_000_0000)%>
+    <%= v.hidden_field :voucher_code, id: :voucher_code, value: @code %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+            <div class="form-group">
+              <%= v.select(:voucher_type, [['airtime','airtime'], ['data','data'],['voice','voice']], {}, { :class => 'form-control' }) %>
+            </div>
+      </div>
+      </div>
+    <div class="col-md-4">
+      <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <%= v.text_field :voucher_value,  id: :voucher_value_remaining, :class => 'form-control', :placeholder =>'VALUE' %>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <input type="text" class="form-control" style="height:40px"; placeholder="QTY"; value="">
+                    </div>
+                </div>
+    </div>
+  </div>
+    <div class="col-md-4">
+    <%= v.submit :class => 'btn btn-info btn-fill form-control' %>
+    </div>
+  </div>
+
+  <% end %>
+  <br>
+  <table  class="table table-sm table-responsive">
+    <thead>
+      <tr>
+        <th>code</th>
+        <th>type</th>
+        <th>value</th>
+        <th>balance</th>
+        <th>User</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Voucher.all.each do |v| %>
+        <tr>
+          <td><%= v.voucher_code %></td>
+          <td><%= v.voucher_type %></td>
+          <td><%= v.voucher_value %></td>
+          <td><%= v.voucher_value_remaining %></td>
+          <td><%= v.user_id %></td>
+          <td><%= link_to 'delete', v, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>

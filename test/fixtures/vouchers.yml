@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  voucher_code: MyString
+  voucher_type: MyString
+  voucher_value: MyString
+  voucher_value_remaining: MyString
+
+two:
+  voucher_code: MyString
+  voucher_type: MyString
+  voucher_value: MyString
+  voucher_value_remaining: MyString

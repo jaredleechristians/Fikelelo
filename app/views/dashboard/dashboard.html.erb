@@ -181,29 +181,22 @@
                     </div>
                     <div class="content" style="height:250px;overflow-y:scroll">
                       <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-
-                                                <td><%= image_tag("/devices/online-iphone.png") %></td>
-                                                <td><h5 style="margin-bottom: 0px;"> Jared's iPhone 7 Plus</h5>b8:8d:12:04:6c:08</td>
-                                            </tr>
-                                            <tr>
-
-                                                <td><%= image_tag("/devices/online-macbook.png") %></td>
-                                                <td><h5 style="margin-bottom: 0px;"> Jared's MacBook air</h5>b8:8d:12:04:6c:08</td>
-                                            </tr>
-                                            <tr>
-
-
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                        <div class="list-group">
+                          <% @devices.each do |device| %>
+                          <a href="#" onclick="" class="list-group-item list-group-item-action flex-column align-items-start ">
+                            <div class="d-flex w-100 text-center">
+                              <h4 style="margin-bottom: 0px;"> <%= device.name %></h4>
+                              <p class="text-muted"><%= device.token %></p>
+                              <%= button_to 'Remove',  device,  method: :delete, class:"btn btn-danger btn-fill"%>
+                            </div>
+                          </a>
+                          <% end %>
+                        </div>
+                    </div>
                     </div>
                     <div class="footer" style="padding: 15px 15px 10px 15px">
                         <hr>
-                        <div class="stats">You are signed in on these devices</div>
+                        <div class="stats">You are signed in on these devices</div></div>
                     </div>
 
                 </div>
@@ -211,5 +204,4 @@
         </div>
 
     </div>
-</div>
 <!-- Button trigger modal -->

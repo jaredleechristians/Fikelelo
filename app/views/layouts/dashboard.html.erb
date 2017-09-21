@@ -66,12 +66,22 @@ body {
                             <p>Help</p>
                         </a>
                     </li>
+                    <% if current_user.admin? %>
+                    <li>
+                      <a href="/admin/vouchers">
+                          <i class="pe-7s-ticket"></i>
+                          <p>Vouchers</p>
+                      </a>
+                    </li>
+                    <% end %>
                     <li>
                       <%= link_to(destroy_user_session_path, :method => :delete) do %>
                           <i class="pe-7s-close-circle"></i>
                           <p>Logout</p>
                       <% end %>
                     </li>
+
+
 
     				<li class="active-pro">
                         <a href="http://www.google.com">
@@ -88,22 +98,24 @@ body {
 
           <%= yield %>
 
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="/help">
-                                  <i class="pe-7s-help1"></i> Help
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                         By using this service, you agree to the <a href="/terms"> Terms & Conditions </a> &copy; <script>document.write(new Date().getFullYear())</script> All Rights Reserved.
-                    </p>
-                </div>
-            </footer>
+          <footer class="footer">
+              <div class="container-fluid">
+                  <nav class="pull-left">
+                      <ul>
+                          <li>
+                              <a href="/help">
+                                <i class="pe-7s-help1"></i> Help
+                              </a>
+                          </li>
+                      </ul>
+                  </nav>
+                  <p class="copyright pull-right">
+                       By using this service, you agree to the <a href="/terms"> Terms & Conditions </a> &copy; <script>document.write(new Date().getFullYear())</script> All Rights Reserved.
+                  </p>
+              </div>
+          </footer>
+
+        </div>
 
         </div>
     </div>
@@ -257,14 +269,26 @@ body {
         <h3 class="modal-title" id="exampleModalLongTitle">Add Device</h3>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body text-center">
+        <div class="row">
+          <%= form_for(Device.new) do |f| %>
+            <div class="col-md-12">
+              <div class="form-group">
+              <%= f.text_field :name, class:"form-control text-center", :value => "#{@client_device_name} #{@client_os_name} #{@client_type}" %>
+              <%= f.hidden_field :token, :value => "#{@client_device_token}" %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+            </div>
+            <p class="text-muted"> <%=    @client_device_token %> </p>
+            <p><%= @client_ip %></p>
+          </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Confirm</button>
+        <%= f.submit "Add" , class:"btn btn-primary" %>
       </div>
     </div>
+    <% end %>
   </div>
+</div>
 </div>
 
 

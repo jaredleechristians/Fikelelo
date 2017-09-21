@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :vouchers
+  resources :devices
 devise_for :users, :controllers => { registrations: 'registrations' }
 
 root 'dashboard#dashboard'
@@ -8,6 +10,7 @@ root 'dashboard#dashboard'
   get 'dashboard/devices'
   get 'dashboard/transactions'
   get 'dashboard/dashboard'
+  get 'dashboard/vouchers'
 
 match '/dashboard',    to: 'dashboard#dashboard',    via: 'get'
 match '/profile', to: 'dashboard#profile', via: 'get'
@@ -15,6 +18,7 @@ match '/devices', to: 'dashboard#devices', via: 'get'
 match '/transactions',    to: 'dashboard#transactions',    via: 'get'
 match '/help',    to: 'dashboard#help',    via: 'get'
 match '/terms',    to: 'dashboard#terms',    via: 'get'
+match '/admin/vouchers',    to: 'dashboard#vouchers',    via: 'get'
 
 
 
