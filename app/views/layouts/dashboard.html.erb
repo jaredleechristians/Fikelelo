@@ -60,17 +60,31 @@ body {
                             <p>Transactions</p>
                         </a>
                     </li>
+                    <% if !current_user.admin? %>
                     <li>
                         <a href="/help">
                             <i class="pe-7s-help1"></i>
                             <p>Help</p>
                         </a>
                     </li>
+                    <% end %>
                     <% if current_user.admin? %>
+                    <li>
+                      <a href="/users">
+                          <i class="pe-7s-users"></i>
+                          <p>All users</p>
+                      </a>
+                    </li>
                     <li>
                       <a href="/admin/vouchers">
                           <i class="pe-7s-ticket"></i>
                           <p>Vouchers</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/settings">
+                          <i class="pe-7s-config"></i>
+                          <p>Settings</p>
                       </a>
                     </li>
                     <% end %>
@@ -278,7 +292,7 @@ body {
               <%= f.hidden_field :token, :value => "#{@client_device_token}" %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
             </div>
-            <p class="text-muted"> <%=    @client_device_token %> </p>
+            <p class="text-muted"> <%=  @client_device_token %> </p>
             <p><%= @client_ip %></p>
           </div>
       </div>
@@ -289,8 +303,8 @@ body {
     <% end %>
   </div>
 </div>
-</div>
 
+</div>
 
 </body>
 
@@ -334,5 +348,3 @@ body {
       });
   </script>
 <% end %>
-
-<!-- Button trigger modal -->

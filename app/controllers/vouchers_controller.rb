@@ -30,7 +30,8 @@ class VouchersController < ApplicationController
       if @voucher.save
         #format.html { redirect_to @voucher, notice: 'Voucher was successfully created.' }
         #format.json { render :show, status: :created, location: @voucher }
-        format.html { redirect_to 'dashboard#vouchers', notice: 'Voucher was successfully updated.' }
+        format.html { redirect_to 'dashboard/vouchers', notice: 'Voucher was successfully updated.' }
+        format.json { render :show, status: :created, location: 'dashboardvouchers' }
       else
         format.html { render :new }
         format.json { render json: @voucher.errors, status: :unprocessable_entity }
@@ -44,8 +45,8 @@ class VouchersController < ApplicationController
     respond_to do |format|
       if @voucher.update(voucher_params)
         #format.html { redirect_to @voucher, notice: 'Voucher was successfully updated.' }
-        format.json { render :show, status: :ok, location: @voucher }
-        format.html { redirect_to 'admin/vouchers', notice: 'Voucher was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @voucher }
+        format.html { redirect_to root_path, notice: 'Voucher was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @voucher.errors, status: :unprocessable_entity }
@@ -68,11 +69,13 @@ class VouchersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_voucher
       @voucher = Voucher.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def voucher_params
-      @voucher_value_remaining = :voucher_value
-      params.require(:voucher).permit(:voucher_code, :voucher_type, :voucher_value, @voucher_value_remaining )
+      params.require(:voucher).permit(:voucher_code, :voucher_type, :voucher_value, :voucher_value_remaining, :user_id )
     end
+
+
 end

@@ -27,70 +27,85 @@ body {
   <body>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="/sidebar-5.jpg">
+      <div class="sidebar" data-color="purple" data-image="/sidebar-5.jpg">
 
-        <!--
-            Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-            Tip 2: you can also add an image using data-image tag
-        -->
+      <!--
+          Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+          Tip 2: you can also add an image using data-image tag
+      -->
 
-        	<div class="sidebar-wrapper">
-                <div class="logo">
-                    <a  class="simple-text" style="text-decoration: none;">
-                      Fikelelo
+        <div class="sidebar-wrapper">
+              <div class="logo">
+                  <a  class="simple-text" style="text-decoration: none;">
+                    Fikelelo
+                  </a>
+              </div>
+
+              <ul class="nav">
+                  <li>
+                    <a href="/dashboard">
+                      <i class="pe-7s-graph"></i>
+                      <p>Dashboard</p>
                     </a>
-                </div>
-
-                <ul class="nav">
-                    <li>
-                      <a href="/dashboard">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                      </a>
-                    </li>
-                    <li>
-                      <%= link_to(edit_user_registration_path, :method => :get) do %>
-                            <i class="pe-7s-user"></i>
-                            <p>User Profile</p>
-                      <% end %>
-                    </li>
-                    <li>
-                        <a href="/transactions">
-                            <i class="pe-7s-repeat"></i>
-                            <p>Transactions</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/help">
-                            <i class="pe-7s-help1"></i>
-                            <p>Help</p>
-                        </a>
-                    </li>
-                    <% if current_user.admin? %>
-                    <li>
-                      <a href="/admin/vouchers">
-                          <i class="pe-7s-ticket"></i>
-                          <p>Vouchers</p>
-                      </a>
-                    </li>
+                  </li>
+                  <li>
+                    <%= link_to(edit_user_registration_path, :method => :get) do %>
+                          <i class="pe-7s-user"></i>
+                          <p>User Profile</p>
                     <% end %>
-                    <li>
-                      <%= link_to(destroy_user_session_path, :method => :delete) do %>
-                          <i class="pe-7s-close-circle"></i>
-                          <p>Logout</p>
-                      <% end %>
-                    </li>
+                  </li>
+                  <li>
+                      <a href="/transactions">
+                          <i class="pe-7s-repeat"></i>
+                          <p>Transactions</p>
+                      </a>
+                  </li>
+                  <% if !current_user.admin? %>
+                  <li>
+                      <a href="/help">
+                          <i class="pe-7s-help1"></i>
+                          <p>Help</p>
+                      </a>
+                  </li>
+                  <% end %>
+                  <% if current_user.admin? %>
+                  <li>
+                    <a href="/users">
+                        <i class="pe-7s-users"></i>
+                        <p>All users</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/admin/vouchers">
+                        <i class="pe-7s-ticket"></i>
+                        <p>Vouchers</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/settings">
+                        <i class="pe-7s-config"></i>
+                        <p>Settings</p>
+                    </a>
+                  </li>
+                  <% end %>
+                  <li>
+                    <%= link_to(destroy_user_session_path, :method => :delete) do %>
+                        <i class="pe-7s-close-circle"></i>
+                        <p>Logout</p>
+                    <% end %>
+                  </li>
 
-    				<li class="active-pro">
-                        <a href="http://www.google.com">
-                            <i class="pe-7s-rocket"></i>
-                            <p>Explore the Internet</p>
-                        </a>
-                    </li>
-                </ul>
-        	</div>
+
+
+          <li class="active-pro">
+                      <a href="http://www.google.com">
+                          <i class="pe-7s-rocket"></i>
+                          <p>Explore the Internet</p>
+                      </a>
+                  </li>
+              </ul>
         </div>
-
+      </div>
 
         <div class="main-panel">
           <nav class="navbar navbar-default navbar-fixed">

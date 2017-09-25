@@ -66,7 +66,7 @@
           <div class="col-md-4">
             <div class="card">
               <div class="header">
-                  <h3 class="title">ZAR 3 450.00
+                  <h3 class="title"> ZAR <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'airtime').sum(:voucher_value_remaining)%>
                     <span style="float: right"> <a href="" style="color: black" type="" data-toggle="modal" data-target="#addCurrency"><i class="pe-7s-plus"></i></a></span>
                     <span style="float: right"> <a href="" style="color: black" type="" data-toggle="modal" data-target="#makeTransfer"><i class="pe-7s-credit"></i>&nbsp;</a></span>
                   </h3>
@@ -79,18 +79,17 @@
                   <div class="row">
                       <div class="col-md-12">
                           <div class="form-group">
-                            <input type="text" class="form-control" style="height:65px; font-size:28px" placeholder="PREPAID VOUCHER" value="">
+                            <input type="text" class="form-control" style="height:65px; font-size:28px" placeholder="PREPAID VOUCHER" value="" id="voucher_code_txt">
                           </div>
                       </div>
                   </div>
                   </form>
           </div>
           <div class="col-md-4">
-              <button type="submit" class="btn btn-info btn-fill pull-right" style="height:65px;width: 100%; margin-bottom:40px; font-size:28px">LINK</button>
+              <button class="btn btn-info btn-fill pull-right" style="height:65px;width: 100%; margin-bottom:40px; font-size:28px" onclick="link_voucher()">LINK</button>
               <div class="clearfix"></div>
           </div>
       </div>
-
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
@@ -106,17 +105,17 @@
                             <script>
                             var megabites = new RadialProgressChart('.minutes', {
                             diameter: 200,
-                            max: 800,
+                            max: <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'voice').sum(:voucher_value)%>,
                             round: true,
                             series: [{
                               labelStart: '\uF105',
-                              value: 355,
+                              value: <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'voice').sum(:voucher_value_remaining)%>,
                               color: ['#ff1410', '#fe08b5']
                             }],
                             center: {
                               content: [function(value) {
                                 return value
-                              }, ' OF 800 MIN'],
+                              }, ' OF <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'voice').sum(:voucher_value).to_s %> MIN'],
                               y: 25
                             }
                             });
@@ -128,7 +127,7 @@
                     </div>
                     <div class="footer" style="padding: 15px 15px 10px 15px">
                         <hr>
-                        <div class="stats">Updated 3 minutes ago</div>
+                        <div class="stats"><%= time_ago_in_words(DateTime.now) %></div>
                     </div>
                 </div>
             </div>
@@ -147,17 +146,17 @@
                           <script>
                           var minutes = new RadialProgressChart('.megabites', {
                           diameter: 200,
-                          max: 800,
+                          max: <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'data').sum(:voucher_value)%>,
                           round: true,
                           series: [{
                             labelStart: '\uF105',
-                            value: 200,
+                            value: <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'data').sum(:voucher_value_remaining)%>,
                             color: ['yellow', '#7CFC00']
                           }],
                           center: {
                             content: [function(value) {
                               return value
-                            }, ' OF 1024 MB'],
+                            }, ' OF <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'data').sum(:voucher_value).to_s %> MB'],
                             y: 25
                           }
                           });
@@ -168,7 +167,7 @@
                     </div>
                     <div class="footer" style="padding: 15px 15px 10px 15px">
                         <hr>
-                        <div class="stats">Updated 3 minutes ago </div>
+                        <div class="stats"> <%= time_ago_in_words(DateTime.now) %> </div>
                     </div>
                 </div>
             </div>
@@ -202,6 +201,13 @@
                 </div>
             </div>
         </div>
-
     </div>
-<!-- Button trigger modal -->
+
+    <script>
+      function link_voucher(){
+          var voucher_code = document.getElementById('voucher_code_txt').value
+          window.open("/dashboard/link_voucher?voucher_code="+ voucher_code,"_self");
+
+
+      }
+    </script>

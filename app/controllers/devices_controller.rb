@@ -31,9 +31,10 @@ class DevicesController < ApplicationController
         #format.html { redirect_to @device, notice: 'Device was successfully created.' }
         #format.json { render :show, status: :created, location: @device }
         format.html {redirect_to root_path, notice: 'Device was successfully created.'}
+        #format.json { render :show, status: :created, location: root_path }
       else
         format.html { render :new }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
+        #format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +45,10 @@ class DevicesController < ApplicationController
     respond_to do |format|
       if @device.update(device_params)
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
-        format.json { render :show, status: :ok, location: @device }
+        #format.json { render :show, status: :ok, location: @device }
       else
         format.html { render :edit }
-        format.json { render json: @device.errors, status: :unprocessable_entity }
+        #format.json { render json: @device.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -23,9 +23,8 @@
 </nav>
 <div class="content">
   <div class="container-fluid">
-    <%= form_for(Voucher.new) do |v| %>
-    <% @code =  1_000_0000 + Random.rand(10_000_0000 - 1_000_0000)%>
-    <%= v.hidden_field :voucher_code, id: :voucher_code, value: @code %>
+    <%= form_for(Voucher.new, id: :generate_voucher) do |v| %>
+    <%= v.hidden_field :voucher_code, id: :voucher_code %>
     <div class="row">
       <div class="col-md-4">
         <div class="card">
@@ -38,23 +37,26 @@
       <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                      <%= v.text_field :voucher_value,  id: :voucher_value_remaining, :class => 'form-control', :placeholder =>'VALUE' %>
+                      <%= v.text_field :voucher_value, id: :voucher_value, :required => true, :class => 'form-control', :placeholder =>'VALUE', :onchange => 'sync()' %>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                      <input type="text" class="form-control" style="height:40px"; placeholder="QTY"; value="">
+                      <input type="double" class="form-control" style="height:40px" placeholder="QTY" id="QTY" onchange="sync()" required="true">
                     </div>
                 </div>
+      </div>
     </div>
-  </div>
     <div class="col-md-4">
+    <%= v.hidden_field :voucher_value_remaining, id: :voucher_balance %>
     <%= v.submit :class => 'btn btn-info btn-fill form-control' %>
     </div>
   </div>
-
   <% end %>
   <br>
+  <div class="row" >
+  <div class="col-md-12">
+  <div class="card" style="height:420px;overflow-y:scroll">
   <table  class="table table-sm table-responsive">
     <thead>
       <tr>
@@ -80,5 +82,25 @@
       <% end %>
     </tbody>
   </table>
+</div>
+</div>
+</div>
   </div>
 </div>
+
+<script>
+  function sync()
+  {
+    var voucher_value = document.getElementById('voucher_value');
+    var voucher_balance = document.getElementById('voucher_balance');
+    var voucher_code = document.getElementById('voucher_code');
+
+    var numA = Math.floor(Math.random() * 9000) + 1000;
+    var numB = Math.floor(Math.random() * 9000) + 1000;
+    var code = String(numA) + "-" + String(numB);
+    //var qty = document.getElementById('QTY');
+
+    voucher_balance.value = voucher_value.value;
+    voucher_code.value = code;
+  }
+</script>
