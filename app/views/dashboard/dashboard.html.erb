@@ -67,8 +67,8 @@
             <div class="card">
               <div class="header">
                   <h3 class="title"> ZAR <%= Voucher.where(:user_id => current_user.id, :voucher_type => 'airtime').sum(:voucher_value_remaining)%>
-                    <span style="float: right"> <a href="" style="color: black" type="" data-toggle="modal" data-target="#addCurrency"><i class="pe-7s-plus"></i></a></span>
-                    <span style="float: right"> <a href="" style="color: black" type="" data-toggle="modal" data-target="#makeTransfer"><i class="pe-7s-credit"></i>&nbsp;</a></span>
+                    <!-- <span style="float: right"> <a href="" style="color: black" type="" data-toggle="modal" data-target="#addCurrency"><i class="pe-7s-plus"></i></a></span> -->
+                    <span style="float: right"> <a href="#" style="color: black" onclick=" transfer_airtime()"><i class="pe-7s-repeat"></i>&nbsp;</a></span>
                   </h3>
                   <hr>
               </div>
@@ -86,7 +86,7 @@
                   </form>
           </div>
           <div class="col-md-4">
-              <button class="btn btn-info btn-fill pull-right" style="height:65px;width: 100%; margin-bottom:40px; font-size:28px" onclick="link_voucher()">LINK</button>
+              <button class="btn btn-info btn-fill pull-right" style="height:65px;width: 100%; margin-bottom:40px; font-size:28px" onclick="link_voucher()">LINK VOUCHER</button>
               <div class="clearfix"></div>
           </div>
       </div>
@@ -94,7 +94,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="header">
-                        <h3 class="title">Voice<span style="float:right"><a href="" style="color: black" type="" data-toggle="modal" data-target="#addVoice"><i class="pe-7s-plus"></i></a><span></h3>
+                        <h3 class="title">Voice<span style="float:right"><a href="#" style="color: black" onclick="purchase_voice()"><i class="pe-7s-plus"></i></a><span></h3>
                         <hr>
                     </div>
                     <div class="content" style="height:250px;">
@@ -134,7 +134,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="header">
-                        <h3 class="title">Data<span style="float:right"><a href="" style="color: black" type="" data-toggle="modal" data-target="#addData"><i class="pe-7s-plus"></i></a><span></h3>
+                        <h3 class="title">Data<span style="float:right"><a href="#" style="color: black" onclick="purchase_data()"><i class="pe-7s-plus"></i></a><span></h3>
                         <hr>
 
 
@@ -207,7 +207,15 @@
       function link_voucher(){
           var voucher_code = document.getElementById('voucher_code_txt').value
           window.open("/dashboard/link_voucher?voucher_code="+ voucher_code,"_self");
-
-
       }
+      function purchase_data(){
+          window.open("/dashboard/purchase_data","_self");
+      }
+      function purchase_voice(){
+          window.open("/dashboard/purchase_voice","_self");
+      }
+      function transfer_airtime(){
+          window.open("/dashboard/transfer_airtime","_self");
+      }
+
     </script>

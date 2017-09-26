@@ -61,7 +61,7 @@ class VouchersController < ApplicationController
     respond_to do |format|
       #format.html { redirect_to vouchers_url, notice: 'Voucher was successfully destroyed.' }
       format.json { head :no_content }
-      format.html { redirect_to 'admin/vouchers', notice: 'Voucher was successfully updated.' }
+      format.html { redirect_to 'dashboard/vouchers', notice: 'Voucher was successfully updated.' }
     end
   end
 
